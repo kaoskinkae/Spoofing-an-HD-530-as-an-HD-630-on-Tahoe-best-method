@@ -54,7 +54,7 @@ tercero gestiona el reposo y la conexión en caliente del cable.»
 
 Finally, `hda-gfx` with the value `onboard-1` creates a bridge between the graphics and the sound chip, allowing you to output digital audio via HDMI to your monitor's speakers.
 
-##**ALLDATA vs ENABLE en Hackintosh**
+## **ALLDATA vs ENABLE en Hackintosh**
 
 Why the `framebuffer-con1-alldata` method is superior to—and recommended over—`framebuffer-con1-enable` alone
 
