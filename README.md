@@ -4,7 +4,7 @@
 
 "The device-id with a value of 12590000 acts as a disguise for our graphics card. Since recent versions of macOS do not natively support the HD 530, we make the system believe it is an HD 630. Its actual code is 5912, but because macOS reads it in reverse—two digits at a time—we write '1259' and pad it with four zeros."
 
-##**2. Aesthetic Information of the System**
+## **2. Aesthetic Information of the System**
 
 «We begin with `AAPL,slot-name`. This is an informational tag that tells macOS where the graphics unit is connected. Since it is integrated into the processor, we set it to `Internal@0,2,0` so that the system report recognizes it as an internal component.»
 
@@ -16,7 +16,7 @@ For `device_type`, we use "VGA compatible controller." This is the standard name
 
 "In the 'model' section, we enter 'Intel HD Graphics 530.' Although we previously disguised it as 'HD 630' for the sake of the drivers, this line allows us to display the actual name of our hardware in the 'About This Mac' window."
 
-##**3. Video Memory (VRAM) Patches**
+## **3. Video Memory (VRAM) Patches**
 
 **framebuffer-patch-enable 01000000**
 
@@ -32,7 +32,7 @@ preventing black screens in cases where your BIOS has locked the video memory.»
 
 By default, macOS requires 64 megabytes of stolen RAM, but many motherboards only provide 32. By setting `framebuffer-stolenmem` to `00003001`—which corresponds to 19 megabytes—we can get macOS to accept this and boot without errors.
 
-##**4. Video Port Configuration (HDMI)**
+## **4. Video Port Configuration (HDMI)**
 
 **framebuffer-con1-enable 01000000**
 
@@ -48,7 +48,7 @@ By default, macOS requires 64 megabytes of stolen RAM, but many motherboards onl
 primero marca el carril interno de la placa, el segundo lo define como HDMI y el
 tercero gestiona el reposo y la conexión en caliente del cable.»
 
-##**5. Digital Audio for Video**
+## **5. Digital Audio for Video**
 
 **hda-gfx onboard-1**
 
@@ -61,7 +61,7 @@ Why the `framebuffer-con1-alldata` method is superior to—and recommended over�
 The 4 reasons why guides and AIs recommend
 ALLDATA
 
-##**1. It solves the BusID (physical path) issue**
+## **1. It solves the BusID (physical path) issue**
 
 
 On a PC motherboard, an HDMI port needs to know more than just that it is an HDMI port
@@ -69,20 +69,20 @@ On a PC motherboard, an HDMI port needs to know more than just that it is an HDM
 along. If you only use "enable" and "type," the port often ends up with no signal.
 ALLDATA forces the correct BusID right from the start.
 
-##**2. It prevents black screens and wake-from-sleep failures**
+## **2. It prevents black screens and wake-from-sleep failures**
 
 The third block of the ALLDATA value (87010000) configures the connector's "flags."
 These settings prevent the screen from freezing or going black when the computer
 enters sleep mode or when you switch input sources on the monitor.
 
-##**3. It is a clean, error-free "all-in-one" solution**
+## **3. It is a clean, error-free "all-in-one" solution**
 
 With the traditional method, you would have to create separate lines for "enable,"
 "busid," "pipe," "type," and "flags." The ALLDATA parameter replaces all those
 individual properties with a single 12-byte hexadecimal value, reducing the risk of
 typing errors.
 
-##**4. Native compatibility with Hackintool**
+## **4. Native compatibility with Hackintool**
 
 Standard community tools like Hackintool automatically generate patches in the
 ALLDATA format because it is the most reliable standard within WhateverGreen for
