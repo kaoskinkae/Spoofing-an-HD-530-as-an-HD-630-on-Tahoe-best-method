@@ -1,5 +1,7 @@
 # Spoofing-an-HD-530-as-an-HD-630-on-Tahoe-best-method
 
+<img width="1465" height="272" alt="Captura de pantalla 2026-11-24 a las 20 28 31" src="https://github.com/user-attachments/assets/c8c13296-ddf6-4dbd-93b9-375c612e42e2" />
+
 ## **1. Hardware Identification and Disguise**
 
 "The device-id with a value of 12590000 acts as a disguise for our graphics card. Since recent versions of macOS do not natively support the HD 530, we make the system believe it is an HD 630. Its actual code is 5912, but because macOS reads it in reverse—two digits at a time—we write '1259' and pad it with four zeros."
