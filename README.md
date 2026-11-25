@@ -18,9 +18,6 @@
 
 For `device_type`, we use "VGA compatible controller." This is the standard name used to tell macOS what kind of component this is—specifically, a video controller. It helps keep everything organized in the System Report.
 
-**Intel HD Graphics 530 model**
-
-"In the 'model' section, we enter 'Intel HD Graphics 530.' Although we previously disguised it as 'HD 630' for the sake of the drivers, this line allows us to display the actual name of our hardware in the 'About This Mac' window."
 
 ## **3. Video Memory (VRAM) Patches**
 
