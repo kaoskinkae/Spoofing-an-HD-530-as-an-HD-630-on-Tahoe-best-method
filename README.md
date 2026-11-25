@@ -21,31 +21,31 @@ For `device_type`, we use "VGA compatible controller." This is the standard name
 
 ## **3. Video Memory (VRAM) Patches**
 
-**framebuffer-patch-enable 01000000**
+**framebuffer-patch-enable: 01000000**
 
 "The `framebuffer-patch-enable` setting with a value of `01000000` acts as an on/off switch. In computing, `1` signifies 'enabled.' Without this line, macOS will ignore any other patches we apply."
 
-**framebuffer-fbmem 00009000**
+**framebuffer-fbmem: 00009000**
 
 «With framebuffer-fbmem set to 00009000—which, in reverse, amounts to 9 megabytes—
 we reserve a minimum safety buffer of memory for rendering the image,
 preventing black screens in cases where your BIOS has locked the video memory.»
 
-**framebuffer-stolenmem 00003001**
+**framebuffer-stolenmem: 00003001**
 
 By default, macOS requires 64 megabytes of stolen RAM, but many motherboards only provide 32. By setting `framebuffer-stolenmem` to `00003001`—which corresponds to 19 megabytes—we can get macOS to accept this and boot without errors.
 
 ## **4. Video Port Configuration (HDMI)**
 
-**framebuffer-con1-enable 01000000**
+**framebuffer-con1-enable: 01000000**
 
 «The framebuffer-con1-enable setting, with a value of 01000000, acts as an individual power switch for the board's second video port. It grants macOS permission to modify that output.»
 
-**framebuffer-con1-type 00080000**
+**framebuffer-con1-type: 00080000**
 
 «For framebuffer-con1-type, we set 00080000. Since Apple assumes that the ports are DisplayPort, this code tells it that our connector is an HDMI, preventing black screens or pink-tinted colors.»
 
-**framebuffer-con1-alldata 01050A00 00080000 87010000**
+**framebuffer-con1-alldata: 01050A00 00080000 87010000**
 
 «El framebuffer-con1-alldata es un paquete todo en uno en tres bloques: el
 primero marca el carril interno de la placa, el segundo lo define como HDMI y el
@@ -53,11 +53,13 @@ tercero gestiona el reposo y la conexión en caliente del cable.»
 
 ## **5. Digital Audio for Video**
 
-**hda-gfx onboard-1**
+**hda-gfx: onboard-1**
 
 Finally, `hda-gfx` with the value `onboard-1` creates a bridge between the graphics and the sound chip, allowing you to output digital audio via HDMI to your monitor's speakers.
 
-**model Intel HD Grapchics 530 A customization of the name so that it matches the one we are using in this case: HD 530.
+**model: Intel HD Grapchics 530 
+
+A customization of the name so that it matches the one we are using in this case: HD 530.
 
 
 ## **ALLDATA vs ENABLE en Hackintosh**
