@@ -51,7 +51,7 @@ By default, macOS requires 64 megabytes of stolen RAM, but many motherboards onl
 primero marca el carril interno de la placa, el segundo lo define como HDMI y el
 tercero gestiona el reposo y la conexión en caliente del cable.»
 
-## **5. Digital Audio for Video and model**
+## **5. Digital Audio for Video and Model**
 
 **hda-gfx: onboard-1**
 
