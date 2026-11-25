@@ -103,4 +103,29 @@ commercial motherboards.
 
 "`alldata`, on the other hand, is an all-in-one package. In a single line, it configures the internal motherboard lane, specifies that it’s an HDMI connection, and adjusts the power settings to ensure proper 'hot-plug' detection of the monitor. That is why it is always the safest, cleanest, and most professional option."
 
+------------------------------
+
+### Intel HD 530 Framebuffer Connector Patching (`con1` & `con2`)
+
+When spoofing an iGPU as an **Intel HD Graphics 530** (Skylake) on macOS, the default framebuffer layouts often map physical display outputs incorrectly, leading to black screens or non-working HDMI ports. 
+
+The following `DeviceProperties` patch overrides the default connector data for **Connector 1** and **Connector 2** via *WhateverGreen*:
+
+```plist
+<key>framebuffer-con1-alldata</key>
+<data>AQUKAAAIAACHAQAA</data> <!-- Hex: 01050A00 00080000 87010000 -->
+<key>framebuffer-con2-alldata</key>
+<data>AgQKAAAIAACHAQAA</data> <!-- Hex: 02040A00 00080000 87010000 -->
+```
+
+#### Byte-by-Byte Breakdown (Little Endian)
+
+Each `alldata` entry consists of **12 bytes** divided into three 4-byte blocks:
+
+| Block | Hex Value (`con1` / `con2`) | Meaning | Description |
+| :--- | :--- | :--- | :--- |
+| **1. Index, BusID & Pipe** | `01050A00` / `02040A00` | Port Routing | • `01` / `02`: Connector Index.<br>• `05` / `04`: Physical `BusID` routing on the motherboard.<br>• `0A`: Internal GPU Pipe (`0x0A`). |
+| **2. Connector Type** | `00080000` | **HDMI** (`0x00000800`) | Forces macOS to treat both ports as **HDMI** instead of the default DisplayPort (`00040000`), fixing HDMI black screen issues. |
+| **3. Flags** | `87010000` | Hot-Plug & Power (`0x00000187`) | Sets standard Skylake connector flags to ensure proper hot-plug detection and wake-from-sleep behavior. |
+
 
