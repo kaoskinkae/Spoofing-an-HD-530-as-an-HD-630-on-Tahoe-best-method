@@ -5,11 +5,13 @@
 ## **1. Hardware Identification and Disguise**
 
 **device-id: 12590000**
+
 "The device-id with a value of 12590000 acts as a disguise for our graphics card. Since recent versions of macOS do not natively support the HD 530, we make the system believe it is an HD 630. Its actual code is 5912, but because macOS reads it in reverse—two digits at a time—we write '1259' and pad it with four zeros."
 
 ## **2. Aesthetic Information of the System**
 
 **AAPL,slot-name: Internal@0,2,0**
+
 «We begin with `AAPL,slot-name`. This is an informational tag that tells macOS where the graphics unit is connected. Since it is integrated into the processor, we set it to `Internal@0,2,0` so that the system report recognizes it as an internal component.»
 
 **device_type: VGA compatible controller**
