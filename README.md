@@ -57,7 +57,7 @@ tercero gestiona el reposo y la conexión en caliente del cable.»
 
 Finally, `hda-gfx` with the value `onboard-1` creates a bridge between the graphics and the sound chip, allowing you to output digital audio via HDMI to your monitor's speakers.
 
-**model: Intel HD Grapchics 530 
+**model: Intel HD Grapchics 530**
 
 A customization of the name so that it matches the one we are using in this case: HD 530.
 
